@@ -1,0 +1,39 @@
+﻿<Window x:Class="ViewWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="473.6" Width="760" >
+
+    <Grid Margin="0,0,0.0,0">
+        <DataGrid Margin="50,62,49.6,83" x:Name="dataGridEmploes" SelectedItem="{Binding Worker}" ItemsSource="{Binding Employees}"  FontWeight="Bold" AutoGenerateColumns="False" >
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Имя" Width="90" IsReadOnly="True" SortMemberPath="true" Binding="{Binding Path=Name,UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="Должность" Width="150" IsReadOnly="False" Binding="{Binding Path=Place,UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="Возраст" IsReadOnly="True" Width="70" Binding="{Binding Path=Age,UpdateSourceTrigger=PropertyChanged}"/>
+
+                <DataGridCheckBoxColumn Binding="{Binding Path=SetToWork,UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="Приступил к работе" Binding="{Binding СurrentDate}" IsReadOnly="True" Width="150"/>
+
+                <DataGridCheckBoxColumn Binding="{Binding Path=FinishedWork,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"/>
+                <DataGridTextColumn Header="Завершил работу" Binding="{Binding СurrentDate}" IsReadOnly="True" Width="*"/>
+
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Margin="615,361,49.6,45"  Click="Button_Click_DeleteSelectItemSource" Content="Удалить"/>
+
+
+        <Button Margin="50,361,614.6,45" Command = "{Binding AddCommand}" Click="Button_Click_CopySelectItemSource"  Content="Добавить"/>
+
+        <Label Content="Фильтр Имя" HorizontalAlignment="Left" Margin="50,10,0,0" VerticalAlignment="Top" Width="89" Height="29"/>
+        <TextBox HorizontalAlignment="Left" Height="23"  Margin="50,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="txtFilter_TextChanged" x:Name="filterName"  Width="89" MouseEnter="filterName_MouseEnter" />
+
+        <Label Content="Фильтр Должность" HorizontalAlignment="Left" Margin="144,10,0,0" VerticalAlignment="Top" Width="110" Height="29"/>
+        <TextBox  HorizontalAlignment="Left" Height="23"  Margin="139,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="txtFilter_TextChanged" x:Name="filterPlace" Width="151" MouseEnter="filterPlace_MouseEnter" />
+
+        <Label Content="Фильтр Возраст" HorizontalAlignment="Left" Margin="254,10,0,0" VerticalAlignment="Top" Width="98" Height="29"/>
+        <TextBox HorizontalAlignment="Left" Height="23"  Margin="290,39,0,0" TextWrapping="Wrap" VerticalAlignment="Top" TextChanged="txtFilter_TextChanged" x:Name="filterDateBirth"  Width="62" MouseEnter="filterDateBirth_MouseEnter" />
+
+    </Grid>
+</Window>
